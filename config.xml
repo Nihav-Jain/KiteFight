@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<gravity X="0" Y="-10"/>
+	<player>
+		<keymap key="up">38</keymap>
+		<keymap key="down">40</keymap>
+		<keymap key="left">37</keymap>
+		<keymap key="right">39</keymap>
+	</player>
+	<player>
+		<keymap key="up">87</keymap>
+		<keymap key="down">83</keymap>
+		<keymap key="left">65</keymap>
+		<keymap key="right">68</keymap>
+	</player>
 </data>
