@@ -43,7 +43,13 @@ package org.fiea.rpp
 			this.setupPhysicsWorld(parseFloat(xml.gravity.@X), parseFloat(xml.gravity.@Y));
 			for each(var player in xml.player)
 			{
-				this.players.push(new Kite(InputManager.getInstance().addPlayer(player)));
+				InputManager.getInstance().addPlayer(player);
+			}
+			var i:uint = 0;
+			for each(var playerKite in xml.kite)
+			{
+				this.players.push(new Kite(i, playerKite));
+				i++;
 			}
 			
 			InputManager.getInstance().addInputListeners(STAGE);
@@ -52,15 +58,16 @@ package org.fiea.rpp
 		
 		private function update(e:Event):void 
 		{
-			PhysicsWorld.world.Step(1 / 30, 10, 10);
-			PhysicsWorld.world.ClearForces();
-			if (Console.ENVIRONMENT == Console.BOX2DTEST)
-				PhysicsWorld.world.DrawDebugData();
-			
 			for each(var player:Kite in this.players)
 			{
 				player.update();
+				//Console.log("hello " + player.body.GetPosition().x * PhysicsWorld.RATIO, player.body.GetPosition().y * PhysicsWorld.RATIO);
 			}
+			//Console.log();
+			PhysicsWorld.world.Step(1 / 30, 10, 10);
+			PhysicsWorld.world.ClearForces();
+			if (Console.ENVIRONMENT == Console.BOX2DTEST)
+				PhysicsWorld.world.DrawDebugData();			
 		}
 		
 		private function setupPhysicsWorld(gravx:Number, gravy:Number):void

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<gravity X="0" Y="-10"/>
+	<gravity X="0" Y="0"/>
 	<player>
 		<keymap key="up">38</keymap>
 		<keymap key="down">40</keymap>
@@ -13,4 +13,41 @@
 		<keymap key="left">65</keymap>
 		<keymap key="right">68</keymap>
 	</player>
+	<kite>
+		<vertices>	<!-- clockwise -->
+			<vertex x="0" y="-60" />
+			<vertex x="60" y="0" />
+			<vertex x="0" y="60" />
+			<vertex x="-60" y="0" />
+		</vertices>
+		<position x="300" y="300" />
+		<physicalProperties>
+			<friction>0.3</friction>	<!-- 0 to 1 -->
+			<restitution>0.5</restitution>	<!-- 0 to 1 -->
+			<density>1</density>	<!-- kg/m^3 -->
+		</physicalProperties>
+		<movement>
+			<maxAngle>60</maxAngle>	<!-- degrees -->
+			<maxvelocity>4</maxvelocity> <!-- metre/sec -->
+		</movement>
+	</kite>	
+	<kite>
+		<vertices>	<!-- clockwise -->
+			<vertex x="0" y="-60" />
+			<vertex x="60" y="0" />
+			<vertex x="0" y="60" />
+			<vertex x="-60" y="0" />
+		</vertices>
+		<position x="800" y="300" />
+		<physicalProperties>
+			<friction>0.3</friction>	<!-- 0 to 1 -->
+			<restitution>0.5</restitution>	<!-- 0 to 1 -->
+			<density>1</density>	<!-- kg/m^3 -->
+		</physicalProperties>
+		<movement>
+			<maxAngle>60</maxAngle>	<!-- degrees -->
+			<maxvelocity>4</maxvelocity> <!-- metre/sec -->
+		</movement>
+	</kite>	
+	
 </data>

@@ -14,15 +14,24 @@ package org.fiea.rpp
 	public class Kite 
 	{
 		private var id:uint;
+		public var body:b2Body;
 		
 		public function Kite(playerid:uint, xml:XML) 
 		{
-			Console.log("hello");
 			this.id = playerid;
-			
+			Console.log(xml.position.@x);
 			var position:b2Vec2 = new b2Vec2(parseFloat(xml.position.@x) / PhysicsWorld.RATIO, parseFloat(xml.position.@y) / PhysicsWorld.RATIO);
-			Console.log(xml.vertices.length);
-			//var vertices:Vector.<b2Vec2>(
+			var vertices:Vector.<b2Vec2> = new Vector.<b2Vec2>(xml.vertices.children().length(), true);
+			var i:uint;
+			for each(var vertex in xml.vertices.vertex)
+			{
+				vertices[i] = new b2Vec2(parseFloat(vertex.@x) / PhysicsWorld.RATIO, parseFloat(vertex.@y) / PhysicsWorld.RATIO);
+				i++;
+			}
+			var friction:Number = parseFloat(xml.physicalProperties.friction);
+			var restitution:Number = parseFloat(xml.physicalProperties.restitution);
+			var density:Number = parseFloat(xml.physicalProperties.density);
+			this.body = this.createBody(position, vertices, friction, restitution, density);
 		}
 		
 		private function createBody(position:b2Vec2, vertices:Vector.<b2Vec2>, friction:Number, restitution:Number, density:Number):b2Body
@@ -42,7 +51,7 @@ package org.fiea.rpp
 			
 			var body:b2Body = PhysicsWorld.world.CreateBody(bodyDef);
 			body.CreateFixture(bodyFixture);
-			body.ResetMassData();
+			//body.ResetMassData();
 			
 			return body;
 		}
