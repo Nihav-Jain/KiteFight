@@ -48,7 +48,7 @@ package org.fiea.rpp
 			var i:uint = 0;
 			for each(var playerKite in xml.kite)
 			{
-				this.players.push(new Kite(i, playerKite));
+				this.players.push(new Kite(i, playerKite, this));
 				i++;
 			}
 			

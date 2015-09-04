@@ -20,7 +20,7 @@
 			<vertex x="0" y="60" />
 			<vertex x="-60" y="0" />
 		</vertices>
-		<position x="300" y="300" />
+		<position x="300" y="600" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
@@ -38,7 +38,7 @@
 			<vertex x="0" y="60" />
 			<vertex x="-60" y="0" />
 		</vertices>
-		<position x="800" y="300" />
+		<position x="800" y="600" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
