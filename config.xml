@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<gravity X="0" Y="0"/>
+	<gravity X="0" Y="10"/>
 	<player>
 		<keymap key="up">38</keymap>
 		<keymap key="down">40</keymap>
