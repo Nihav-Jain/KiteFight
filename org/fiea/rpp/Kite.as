@@ -55,6 +55,8 @@ package org.fiea.rpp
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			bodyDef.type = b2Body.b2_dynamicBody;
 			bodyDef.position = position.Copy();
+			//bodyDef.linearDamping = 1;
+			bodyDef.angularDamping = 1;
 			
 			var bodyShape:b2PolygonShape = new b2PolygonShape();
 			bodyShape.SetAsVector(vertices, vertices.length);
@@ -74,28 +76,31 @@ package org.fiea.rpp
 		
 		public function update():void
 		{
+			//this.killOrthogonalVelocity();
 			var newVelocity:b2Vec2 = new b2Vec2(0, 0);
 			var newAngle:Number;
 			var inputMgr:InputManager = InputManager.getInstance();
 			if (inputMgr.getPlayerKeyStatus(id, "left"))
 			{
 				newAngle = this.body.GetAngle() - this.angleStep;
-				if (newAngle >= -this.maxAngle)
+				//if (newAngle >= -this.maxAngle)
 					this.body.SetAngle(newAngle);
 			}
 			if (inputMgr.getPlayerKeyStatus(id, "right"))
 			{
 				newAngle = this.body.GetAngle() + this.angleStep;
-				if (newAngle <= this.maxAngle)
+				//if (newAngle <= this.maxAngle)
 					this.body.SetAngle(newAngle);
 			}
 			if (inputMgr.getPlayerKeyStatus(id, "up"))
 			{
 				Console.log(id, "up");
+				this.body.SetPosition(new b2Vec2(this.body.GetPosition().x, this.body.GetPosition().y - 0.1));
 			}
 			if (inputMgr.getPlayerKeyStatus(id, "down"))
 			{
 				Console.log(id, "down");
+				this.body.SetPosition(new b2Vec2(this.body.GetPosition().x, this.body.GetPosition().y + 0.1));
 			}
 			var direction:b2Vec2 = this.body.GetWorldCenter().Copy();
 			direction.Add(new b2Vec2(60 * Math.cos(this.body.GetAngle() - Pi_2) / PhysicsWorld.RATIO, 60 * Math.sin(this.body.GetAngle() - Pi_2) / PhysicsWorld.RATIO));
@@ -108,9 +113,22 @@ package org.fiea.rpp
 			
 			direction.Subtract(this.body.GetWorldCenter());
 			direction.Normalize();
+			//var normal:b2Vec2 = new b2Vec2(- direction.y * Math.sin(Pi_2), direction.x);
+			//this.body.ApplyForce(normal, this.body.GetPosition());
 			direction.Multiply(4);
-			this.body.SetAwake(true);
-			this.body.SetLinearVelocity(direction);
+			//this.body.SetAwake(true);
+			//this.body.SetLinearVelocity(direction);
+			this.body.ApplyForce(direction, this.body.GetPosition());
+		}
+		
+		private function killOrthogonalVelocity():void
+		{
+			var localPoint:b2Vec2 = new b2Vec2(0, 0);
+			var velocity:b2Vec2 = this.body.GetLinearVelocityFromLocalPoint(localPoint);
+			
+			var sidewaysAxis:b2Vec2 = this.body.GetTransform().R.col2.Copy();
+			sidewaysAxis.Multiply(sidewaysAxis.Length() * velocity.Length());
+			this.body.SetLinearVelocity(sidewaysAxis);
 		}
 		
 	}
