@@ -116,9 +116,11 @@ package org.fiea.rpp
 			//var normal:b2Vec2 = new b2Vec2(- direction.y * Math.sin(Pi_2), direction.x);
 			//this.body.ApplyForce(normal, this.body.GetPosition());
 			direction.Multiply(4);
-			//this.body.SetAwake(true);
-			//this.body.SetLinearVelocity(direction);
-			this.body.ApplyForce(direction, this.body.GetPosition());
+			this.body.SetAwake(true);
+			this.body.SetLinearVelocity(direction);
+			//this.body.SetLinearVelocity(new b2Vec2(0, 0));
+			//this.body.SetAngularVelocity(0);
+			//this.body.ApplyForce(direction, this.body.GetPosition());
 		}
 		
 		private function killOrthogonalVelocity():void

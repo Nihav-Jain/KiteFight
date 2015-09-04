@@ -31,7 +31,7 @@ package org.fiea.rpp
 			var bodyFixture:b2FixtureDef = new b2FixtureDef();
 			bodyFixture.shape = bodyShape;
 			bodyFixture.friction = 1;
-			bodyFixture.restitution = 0;
+			bodyFixture.restitution = 1;
 			bodyFixture.density = 10;
 			
 			var body:b2Body = PhysicsWorld.world.CreateBody(bodyDef);
