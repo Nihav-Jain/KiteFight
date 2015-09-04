@@ -41,6 +41,7 @@ package org.fiea.rpp
 		{
 			xml = new XML(LoaderMax.getContent("game-config"));
 			this.setupPhysicsWorld(parseFloat(xml.gravity.@X), parseFloat(xml.gravity.@Y));
+			this.createWalls();
 			for each(var player in xml.player)
 			{
 				InputManager.getInstance().addPlayer(player);
@@ -74,6 +75,7 @@ package org.fiea.rpp
 		{
 			var gravity:b2Vec2 = new b2Vec2(gravx, gravy);
 			PhysicsWorld.world = new b2World(gravity, true);
+			PhysicsWorld.world.SetContactListener(new KiteContactListener());
 			
 			// only for debugging box2d
 			var debug_draw:b2DebugDraw = new b2DebugDraw();
@@ -87,6 +89,21 @@ package org.fiea.rpp
 			debug_draw.SetAlpha(0.8);
 			debug_draw.SetFillAlpha(0.3);
 			PhysicsWorld.world.SetDebugDraw(debug_draw);
+		}
+		
+		private function createWalls():void
+		{
+			// top
+			var topWall:Wall = new Wall(0, -PhysicsWorld.RATIO, STAGE.stageWidth, PhysicsWorld.RATIO);
+			
+			//bottom
+			var bottomWall = new Wall(0, STAGE.stageHeight + PhysicsWorld.RATIO, STAGE.stageWidth, PhysicsWorld.RATIO);
+			
+			//left
+			var leftWall = new Wall( -PhysicsWorld.RATIO, 0, PhysicsWorld.RATIO, stage.stageHeight);
+			
+			//right
+			var rightWall = new Wall(STAGE.stageWidth, 0, PhysicsWorld.RATIO, STAGE.stageHeight);
 		}
 		
 		
