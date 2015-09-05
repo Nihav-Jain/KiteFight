@@ -7,8 +7,12 @@ package org.fiea.rpp
 	import Box2D.Dynamics.b2FixtureDef;
 	import Box2D.Dynamics.Joints.b2MouseJoint;
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
+	import Box2D.Dynamics.Joints.b2RevoluteJointDef;
+	import Box2D.Dynamics.Joints.b2RopeJoint;
+	import Box2D.Dynamics.Joints.b2RopeJointDef;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
+	import flash.geom.Point;
 	import org.fiea.rpp.utils.Console;
 	import org.fiea.rpp.utils.InputManager;
 	/**
@@ -26,7 +30,11 @@ package org.fiea.rpp
 		private var maxVelocity:Number;
 		
 		private var pivot:b2Vec2;
+		private var visualPivot:Point;
+		private var visualKitePivot:b2Vec2;
 		private var mouseJoint:b2MouseJoint;
+		
+		private var knife:Knife;
 		
 		private static const Pi_180:Number = Math.PI / 180;
 		private static const Pi_2:Number = Math.PI / 2;
@@ -34,7 +42,6 @@ package org.fiea.rpp
 		public function Kite(playerid:uint, xml:XML, parent:DisplayObjectContainer) 
 		{
 			this.id = playerid;
-			Console.log(xml.position.@x);
 			var position:b2Vec2 = new b2Vec2(parseFloat(xml.position.@x) / PhysicsWorld.RATIO, parseFloat(xml.position.@y) / PhysicsWorld.RATIO);
 			var vertices:Vector.<b2Vec2> = new Vector.<b2Vec2>(xml.vertices.children().length(), true);
 			var i:uint;
@@ -54,18 +61,32 @@ package org.fiea.rpp
 			//this.pivot = new b2Vec2((this.body.GetPosition().x - vertices[0].x) / 2, (this.body.GetPosition().y - vertices[0].y) / 2);
 			this.pivot = this.body.GetLocalCenter().Copy();
 			this.pivot.x = (vertices[0].x - this.pivot.x) / 2;
-			this.pivot.y = (vertices[0].y - this.pivot.y) / 2;
+			this.pivot.y = (vertices[0].y - this.pivot.y) / 2;			
 			this.pivot.Add(this.body.GetWorldCenter());
+			visualKitePivot = this.pivot.Copy();
+			
+			position.x = this.body.GetPosition().x;
+			position.y = this.body.GetPosition().y + 1;
+			var knifeVertices:Vector.<b2Vec2> = new Vector.<b2Vec2>();
+			for each(var knifevertex in xml.knife.vertex)
+			{
+				knifeVertices.push(new b2Vec2(parseFloat(knifevertex.@x) / PhysicsWorld.RATIO, parseFloat(knifevertex.@y) / PhysicsWorld.RATIO));
+			}
+			friction = parseFloat(xml.knife.physicalProperties.friction);
+			restitution = parseFloat(xml.knife.physicalProperties.restitution);
+			density = parseFloat(xml.knife.physicalProperties.density);
+			this.knife = new Knife(position, knifeVertices, friction, restitution, density);
 
 			var mouseJointDef:b2MouseJointDef = new b2MouseJointDef();
 			mouseJointDef.bodyA = PhysicsWorld.world.GetGroundBody();
 			mouseJointDef.bodyB = this.body;
 			mouseJointDef.target.Set(pivot.x, pivot.y);
-			mouseJointDef.dampingRatio = 0.5;
+			mouseJointDef.dampingRatio = 1;
 			mouseJointDef.collideConnected = true;
 			mouseJointDef.maxForce = 300 * this.body.GetMass();
 			mouseJoint = PhysicsWorld.world.CreateJoint(mouseJointDef) as b2MouseJoint;
 			
+			visualPivot = new Point(parseFloat(xml.pivot.@x), parseFloat(xml.pivot.@y));
 			this.skin = new Sprite();
 			parent.addChild(skin);
 		}
@@ -96,7 +117,6 @@ package org.fiea.rpp
 		
 		public function update():void
 		{
-			//this.killOrthogonalVelocity();
 			var newVelocity:b2Vec2 = new b2Vec2(0, 0);
 			var newAngle:Number;
 			var inputMgr:InputManager = InputManager.getInstance();
@@ -117,49 +137,21 @@ package org.fiea.rpp
 			if (inputMgr.getPlayerKeyStatus(id, "up"))
 			{
 				Console.log(id, "up");
-				//this.body.SetPosition(new b2Vec2(this.body.GetPosition().x, this.body.GetPosition().y - 0.1));
 				this.pivot.y -= 0.2;
 			}
 			if (inputMgr.getPlayerKeyStatus(id, "down"))
 			{
 				Console.log(id, "down");
-				//this.body.SetPosition(new b2Vec2(this.body.GetPosition().x, this.body.GetPosition().y + 0.1));
 				this.pivot.y += 0.2;
 			}
-/*			var direction:b2Vec2 = this.body.GetWorldCenter().Copy();
-			direction.Add(new b2Vec2(60 * Math.cos(this.body.GetAngle() - Pi_2) / PhysicsWorld.RATIO, 60 * Math.sin(this.body.GetAngle() - Pi_2) / PhysicsWorld.RATIO));
-			var directionAngle:Number = Math.atan(direction.y / direction.x);
-*/			
-			this.skin.graphics.clear();
-			this.skin.graphics.beginFill(0xFF00FF, 1);
-			this.skin.graphics.drawCircle(pivot.x * PhysicsWorld.RATIO, pivot.y * PhysicsWorld.RATIO, 4);
-			this.skin.graphics.endFill();
-			
-/*			if (!mouseJoint)
-				PhysicsWorld.world.DestroyJoint(mouseJoint);
-			mouseJoint = PhysicsWorld.world.CreateJoint(mouseJointDef) as b2MouseJoint;
-*/			
 			mouseJoint.SetTarget(pivot);
-			body.SetAwake(true);
-
-/*			direction.Subtract(this.body.GetWorldCenter());
-			direction.Normalize();
-			//var normal:b2Vec2 = new b2Vec2(- direction.y * Math.sin(Pi_2), direction.x);
-			//this.body.ApplyForce(normal, this.body.GetPosition());
-			direction.Multiply(4);
-			//this.body.SetAwake(true);
-			//this.body.SetLinearVelocity(direction);
-			this.body.ApplyForce(direction, this.body.GetPosition());*/
-		}
-		
-		private function killOrthogonalVelocity():void
-		{
-			var localPoint:b2Vec2 = new b2Vec2(0, 0);
-			var velocity:b2Vec2 = this.body.GetLinearVelocityFromLocalPoint(localPoint);
+			//body.SetAwake(true);
 			
-			var sidewaysAxis:b2Vec2 = this.body.GetTransform().R.col2.Copy();
-			sidewaysAxis.Multiply(sidewaysAxis.Length() * velocity.Length());
-			this.body.SetLinearVelocity(sidewaysAxis);
+			this.skin.graphics.clear();
+			this.skin.graphics.lineStyle(1, 0x000000, 1);
+			this.skin.graphics.moveTo(this.visualPivot.x, this.visualPivot.y);
+			this.skin.graphics.lineTo(this.body.GetPosition().x * PhysicsWorld.RATIO, this.body.GetPosition().y * PhysicsWorld.RATIO);
+			this.skin.graphics.endFill();
 		}
 		
 	}
