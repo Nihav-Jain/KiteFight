@@ -69,10 +69,11 @@ package org.fiea.rpp
 			visualKitePivot = this.pivot.Copy();
 			
 			this.nextRopeLink = this.body;
-			this.setupRope(parseInt(xml.rope.@links), parseFloat(xml.rope.@linkLength), parseFloat(xml.rope.@linkWidth), vertices[2]);
+			this.ropeLinkLength = parseFloat(xml.rope.@linkLength);
+			this.setupRope(parseInt(xml.rope.@links), ropeLinkLength, parseFloat(xml.rope.@linkWidth), vertices[2]);
 			
-			position.x = this.body.GetPosition().x;
-			position.y = this.body.GetPosition().y + 1;
+			position.x = this.nextRopeLink.GetPosition().x;
+			position.y = this.nextRopeLink.GetPosition().y + ropeLinkLength;
 			var knifeVertices:Vector.<b2Vec2> = new Vector.<b2Vec2>();
 			for each(var knifevertex in xml.knife.vertex)
 			{
@@ -81,8 +82,9 @@ package org.fiea.rpp
 			friction = parseFloat(xml.knife.physicalProperties.friction);
 			restitution = parseFloat(xml.knife.physicalProperties.restitution);
 			density = parseFloat(xml.knife.physicalProperties.density);
-			//this.knife = new Knife(position, knifeVertices, friction, restitution, density);
-
+			this.knife = new Knife(position, knifeVertices, friction, restitution, density);
+			this.createRevoluteJoint(this.nextRopeLink, this.knife.body, new b2Vec2(0, ropeLinkLength / 2), new b2Vec2(0, 0));
+			
 			mouseJoint = this.createMouseJoint();
 			
 			visualPivot = new Point(parseFloat(xml.pivot.@x), parseFloat(xml.pivot.@y));
