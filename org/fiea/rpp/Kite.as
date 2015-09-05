@@ -35,6 +35,9 @@ package org.fiea.rpp
 		private var mouseJoint:b2MouseJoint;
 		
 		private var knife:Knife;
+		private var ropeLinkLength:Number;
+		private var nextRopeLink:b2Body;
+		private var rope:Vector.<RopeLink>;
 		
 		private static const Pi_180:Number = Math.PI / 180;
 		private static const Pi_2:Number = Math.PI / 2;
@@ -65,6 +68,9 @@ package org.fiea.rpp
 			this.pivot.Add(this.body.GetWorldCenter());
 			visualKitePivot = this.pivot.Copy();
 			
+			this.nextRopeLink = this.body;
+			this.setupRope(parseInt(xml.rope.@links), parseFloat(xml.rope.@linkLength), parseFloat(xml.rope.@linkWidth), vertices[2]);
+			
 			position.x = this.body.GetPosition().x;
 			position.y = this.body.GetPosition().y + 1;
 			var knifeVertices:Vector.<b2Vec2> = new Vector.<b2Vec2>();
@@ -75,7 +81,7 @@ package org.fiea.rpp
 			friction = parseFloat(xml.knife.physicalProperties.friction);
 			restitution = parseFloat(xml.knife.physicalProperties.restitution);
 			density = parseFloat(xml.knife.physicalProperties.density);
-			this.knife = new Knife(position, knifeVertices, friction, restitution, density);
+			//this.knife = new Knife(position, knifeVertices, friction, restitution, density);
 
 			mouseJoint = this.createMouseJoint();
 			
@@ -140,12 +146,31 @@ package org.fiea.rpp
 			mouseJoint.SetTarget(pivot);
 			//body.SetAwake(true);
 			
-			this.skin.graphics.clear();
+/*			this.skin.graphics.clear();
 			this.skin.graphics.lineStyle(1, 0x000000, 1);
 			this.skin.graphics.moveTo(this.visualPivot.x, this.visualPivot.y);
 			this.skin.graphics.lineTo(this.body.GetPosition().x * PhysicsWorld.RATIO, this.body.GetPosition().y * PhysicsWorld.RATIO);
-			this.skin.graphics.endFill();
+			this.skin.graphics.endFill();*/
 		}
+		
+		private function setupRope(numLinks:int, linkLength:Number, linkWidth:Number, vertex:b2Vec2):void 
+		{
+			this.rope = new Vector.<RopeLink>(numLinks, true);
+			for (var i:int = 0; i < numLinks; i++)
+			{
+				var newY:Number = this.nextRopeLink.GetPosition().y + linkLength;
+					
+				this.rope[i] = new RopeLink(this.skin, linkWidth, linkLength, new Point(this.body.GetPosition().x, newY), 0.5, 0.3, 10);
+				if (i==0) {
+					this.createRevoluteJoint(this.nextRopeLink, this.rope[i].body, vertex, new b2Vec2(0, -linkLength / 2));
+				}
+				else {
+					this.createRevoluteJoint(this.nextRopeLink, this.rope[i].body, new b2Vec2(0, linkLength / 2), new b2Vec2(0, -linkLength / 2));
+				}
+				this.nextRopeLink = this.rope[i].body;
+			}
+		}
+		
 		
 		private function createMouseJoint():b2MouseJoint
 		{
@@ -157,6 +182,22 @@ package org.fiea.rpp
 			mouseJointDef.collideConnected = true;
 			mouseJointDef.maxForce = 300 * this.body.GetMass();
 			return PhysicsWorld.world.CreateJoint(mouseJointDef) as b2MouseJoint;
+		}
+
+		private function createRevoluteJoint(bodyA:b2Body, bodyB:b2Body, anchorA:b2Vec2, anchorB:b2Vec2, enableLimit:Boolean=false, lowerLimit:Number=0.0, higherLimit:Number=0.0):void 
+		{
+			var revoluteJointDef:b2RevoluteJointDef = new b2RevoluteJointDef();
+			revoluteJointDef.localAnchorA.Set(anchorA.x, anchorA.y);
+			revoluteJointDef.localAnchorB.Set(anchorB.x, anchorB.y);
+			revoluteJointDef.bodyA = bodyA;
+			revoluteJointDef.bodyB = bodyB;
+			revoluteJointDef.enableLimit = enableLimit;
+			if (enableLimit)
+			{
+				revoluteJointDef.lowerAngle = lowerLimit;
+				revoluteJointDef.upperAngle = higherLimit;
+			}
+			PhysicsWorld.world.CreateJoint(revoluteJointDef);
 		}
 		
 	}
