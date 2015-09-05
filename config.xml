@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<gravity X="0" Y="10"/>
+	<gravity X="0" Y="0"/>
 	<player>
 		<keymap key="up">38</keymap>
 		<keymap key="down">40</keymap>
@@ -15,12 +15,26 @@
 	</player>
 	<kite>
 		<vertices>	<!-- clockwise -->
-			<vertex x="0" y="-60" />
-			<vertex x="60" y="0" />
-			<vertex x="0" y="60" />
-			<vertex x="-60" y="0" />
+			<vertex x="0" y="-40" />
+			<vertex x="40" y="0" />
+			<vertex x="0" y="30" />
+			<vertex x="-40" y="0" />
 		</vertices>
-		<position x="300" y="600" />
+		<rope links="5" linkLength="1" linkWidth="0.1" /
+		<knife>
+			<vertex x="0" y="-80" />
+			<vertex x="5" y="-15" />
+			<vertex x="5" y="0" />
+			<vertex x="-5" y="0" />
+			<vertex x="-5" y="-15" />
+			<physicalProperties>
+				<friction>0.5</friction>	<!-- 0 to 1 -->
+				<restitution>1</restitution>	<!-- 0 to 1 -->
+				<density>2</density>	<!-- kg/m^3 -->
+			</physicalProperties>
+		</knife>
+		<position x="300" y="300" />
+		<pivot x="300" y="675" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
@@ -33,12 +47,26 @@
 	</kite>	
 	<kite>
 		<vertices>	<!-- clockwise -->
-			<vertex x="0" y="-60" />
-			<vertex x="60" y="0" />
-			<vertex x="0" y="60" />
-			<vertex x="-60" y="0" />
+			<vertex x="0" y="-40" />
+			<vertex x="40" y="0" />
+			<vertex x="0" y="30" />
+			<vertex x="-40" y="0" />
 		</vertices>
-		<position x="800" y="600" />
+		<rope links="5" linkLength="1" linkWidth="0.1" /
+		<knife>
+			<vertex x="0" y="-80" />
+			<vertex x="5" y="-15" />
+			<vertex x="5" y="0" />
+			<vertex x="-5" y="0" />
+			<vertex x="-5" y="-15" />
+			<physicalProperties>
+				<friction>0.5</friction>	<!-- 0 to 1 -->
+				<restitution>1</restitution>	<!-- 0 to 1 -->
+				<density>2</density>	<!-- kg/m^3 -->
+			</physicalProperties>
+		</knife>
+		<position x="800" y="300" />
+		<pivot x="800" y="675" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
