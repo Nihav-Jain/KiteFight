@@ -77,17 +77,10 @@ package org.fiea.rpp
 			density = parseFloat(xml.knife.physicalProperties.density);
 			this.knife = new Knife(position, knifeVertices, friction, restitution, density);
 
-			var mouseJointDef:b2MouseJointDef = new b2MouseJointDef();
-			mouseJointDef.bodyA = PhysicsWorld.world.GetGroundBody();
-			mouseJointDef.bodyB = this.body;
-			mouseJointDef.target.Set(pivot.x, pivot.y);
-			mouseJointDef.dampingRatio = 1;
-			mouseJointDef.collideConnected = true;
-			mouseJointDef.maxForce = 300 * this.body.GetMass();
-			mouseJoint = PhysicsWorld.world.CreateJoint(mouseJointDef) as b2MouseJoint;
+			mouseJoint = this.createMouseJoint();
 			
 			visualPivot = new Point(parseFloat(xml.pivot.@x), parseFloat(xml.pivot.@y));
-			this.skin = new Sprite();
+			this.skin = new Sprite();	// TODO
 			parent.addChild(skin);
 		}
 		
@@ -152,6 +145,18 @@ package org.fiea.rpp
 			this.skin.graphics.moveTo(this.visualPivot.x, this.visualPivot.y);
 			this.skin.graphics.lineTo(this.body.GetPosition().x * PhysicsWorld.RATIO, this.body.GetPosition().y * PhysicsWorld.RATIO);
 			this.skin.graphics.endFill();
+		}
+		
+		private function createMouseJoint():b2MouseJoint
+		{
+			var mouseJointDef:b2MouseJointDef = new b2MouseJointDef();
+			mouseJointDef.bodyA = PhysicsWorld.world.GetGroundBody();
+			mouseJointDef.bodyB = this.body;
+			mouseJointDef.target.Set(pivot.x, pivot.y);
+			mouseJointDef.dampingRatio = 1;
+			mouseJointDef.collideConnected = true;
+			mouseJointDef.maxForce = 300 * this.body.GetMass();
+			return PhysicsWorld.world.CreateJoint(mouseJointDef) as b2MouseJoint;
 		}
 		
 	}
