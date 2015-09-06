@@ -123,26 +123,18 @@ package org.fiea.rpp
 			var inputMgr:InputManager = InputManager.getInstance();
 			if (inputMgr.getPlayerKeyStatus(_id, "left"))
 			{
-				newAngle = this.body.GetAngle() - this.angleStep;
-				//if (newAngle >= -this.maxAngle)
-					//this.body.SetAngle(newAngle);
 				this.pivot.x -= 0.2;
 			}
 			if (inputMgr.getPlayerKeyStatus(_id, "right"))
 			{
-				newAngle = this.body.GetAngle() + this.angleStep;
-				//if (newAngle <= this.maxAngle)
-					//this.body.SetAngle(newAngle);
 				this.pivot.x += 0.2;
 			}
 			if (inputMgr.getPlayerKeyStatus(_id, "up"))
 			{
-				Console.log(_id, "up");
 				this.pivot.y -= 0.2;
 			}
 			if (inputMgr.getPlayerKeyStatus(_id, "down"))
 			{
-				Console.log(_id, "down");
 				this.pivot.y += 0.2;
 			}
 			mouseJoint.SetTarget(pivot);
