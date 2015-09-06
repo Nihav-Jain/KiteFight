@@ -71,6 +71,16 @@ package org.fiea.rpp
 				PhysicsWorld.world.DrawDebugData();			
 		}
 		
+		public function pauseGame():void
+		{
+			this.removeEventListener(Event.ENTER_FRAME, update);
+		}
+		
+		public function resumeGame():void
+		{
+			this.addEventListener(Event.ENTER_FRAME, update);
+		}
+		
 		private function setupPhysicsWorld(gravx:Number, gravy:Number):void
 		{
 			var gravity:b2Vec2 = new b2Vec2(gravx, gravy);
@@ -83,8 +93,8 @@ package org.fiea.rpp
 			this.addChild(debug_sprite);
 			debug_draw.SetSprite(debug_sprite);
 			debug_draw.SetDrawScale(PhysicsWorld.RATIO);
-			//debug_draw.SetFlags(b2DebugDraw.e_shapeBit);
-			debug_draw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+			debug_draw.SetFlags(b2DebugDraw.e_shapeBit);
+			//debug_draw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 			debug_draw.SetLineThickness(1);
 			debug_draw.SetAlpha(0.8);
 			debug_draw.SetFillAlpha(0.3);
