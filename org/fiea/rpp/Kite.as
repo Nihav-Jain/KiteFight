@@ -21,9 +21,9 @@ package org.fiea.rpp
 	 */
 	public class Kite
 	{
-		private var id:uint;
+		private var _id:uint;
 		public var body:b2Body;
-		private var skin:Sprite;
+		public var skin:Sprite;
 		
 		private var maxAngle:Number;
 		private var angleStep:Number;
@@ -44,7 +44,7 @@ package org.fiea.rpp
 		
 		public function Kite(playerid:uint, xml:XML, parent:DisplayObjectContainer) 
 		{
-			this.id = playerid;
+			this._id = playerid;
 			var position:b2Vec2 = new b2Vec2(parseFloat(xml.position.@x) / PhysicsWorld.RATIO, parseFloat(xml.position.@y) / PhysicsWorld.RATIO);
 			var vertices:Vector.<b2Vec2> = new Vector.<b2Vec2>(xml.vertices.children().length(), true);
 			var i:uint;
@@ -82,7 +82,7 @@ package org.fiea.rpp
 			friction = parseFloat(xml.knife.physicalProperties.friction);
 			restitution = parseFloat(xml.knife.physicalProperties.restitution);
 			density = parseFloat(xml.knife.physicalProperties.density);
-			this.knife = new Knife(position, knifeVertices, friction, restitution, density);
+			this.knife = new Knife(_id, position, knifeVertices, friction, restitution, density);
 			this.createRevoluteJoint(this.nextRopeLink, this.knife.body, new b2Vec2(0, ropeLinkLength / 2), new b2Vec2(0, 0));
 			
 			mouseJoint = this.createMouseJoint();
@@ -121,28 +121,28 @@ package org.fiea.rpp
 			var newVelocity:b2Vec2 = new b2Vec2(0, 0);
 			var newAngle:Number;
 			var inputMgr:InputManager = InputManager.getInstance();
-			if (inputMgr.getPlayerKeyStatus(id, "left"))
+			if (inputMgr.getPlayerKeyStatus(_id, "left"))
 			{
 				newAngle = this.body.GetAngle() - this.angleStep;
 				//if (newAngle >= -this.maxAngle)
 					//this.body.SetAngle(newAngle);
 				this.pivot.x -= 0.2;
 			}
-			if (inputMgr.getPlayerKeyStatus(id, "right"))
+			if (inputMgr.getPlayerKeyStatus(_id, "right"))
 			{
 				newAngle = this.body.GetAngle() + this.angleStep;
 				//if (newAngle <= this.maxAngle)
 					//this.body.SetAngle(newAngle);
 				this.pivot.x += 0.2;
 			}
-			if (inputMgr.getPlayerKeyStatus(id, "up"))
+			if (inputMgr.getPlayerKeyStatus(_id, "up"))
 			{
-				Console.log(id, "up");
+				Console.log(_id, "up");
 				this.pivot.y -= 0.2;
 			}
-			if (inputMgr.getPlayerKeyStatus(id, "down"))
+			if (inputMgr.getPlayerKeyStatus(_id, "down"))
 			{
-				Console.log(id, "down");
+				Console.log(_id, "down");
 				this.pivot.y += 0.2;
 			}
 			mouseJoint.SetTarget(pivot);
@@ -200,6 +200,11 @@ package org.fiea.rpp
 				revoluteJointDef.upperAngle = higherLimit;
 			}
 			PhysicsWorld.world.CreateJoint(revoluteJointDef);
+		}
+		
+		public function get id():uint 
+		{
+			return _id;
 		}
 		
 	}

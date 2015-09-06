@@ -12,10 +12,14 @@ package org.fiea.rpp
 	public class Knife 
 	{
 		public var body:b2Body;
+		private var _playerid:uint;
 		
-		public function Knife(position:b2Vec2, vertices:Vector.<b2Vec2>, friction:Number, restitution:Number, density:Number) 
+		public function Knife(id:uint, position:b2Vec2, vertices:Vector.<b2Vec2>, friction:Number, restitution:Number, density:Number) 
 		{
+			_playerid = id;
 			this.body = this.createKnifeBody(position, vertices, friction, restitution, density);
+			body.SetUserData(this);
+			
 		}
 
 		
@@ -38,9 +42,13 @@ package org.fiea.rpp
 			
 			var body:b2Body = PhysicsWorld.world.CreateBody(bodyDef);
 			body.CreateFixture(bodyFixture);
-			body.SetUserData(this);
 			
 			return body;
+		}
+		
+		public function get playerid():uint 
+		{
+			return _playerid;
 		}
 
 	}
