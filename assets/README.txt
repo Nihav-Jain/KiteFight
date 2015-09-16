@@ -1,0 +1,1 @@
+Resized asstets for the FLA file

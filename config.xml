@@ -2,23 +2,25 @@
 <data>
 	<gravity X="0" Y="10"/>
 	<player>
-		<keymap key="up">38</keymap>
-		<keymap key="down">40</keymap>
-		<keymap key="left">37</keymap>
-		<keymap key="right">39</keymap>
-	</player>
-	<player>
 		<keymap key="up">87</keymap>
 		<keymap key="down">83</keymap>
 		<keymap key="left">65</keymap>
 		<keymap key="right">68</keymap>
 	</player>
+	<player>
+		<keymap key="up">38</keymap>
+		<keymap key="down">40</keymap>
+		<keymap key="left">37</keymap>
+		<keymap key="right">39</keymap>
+	</player>
 	<kite>
+		<character src="assets/characters/Girl/Papergirl_untextured_Blue.png" />
+		<kiteSkin src="assets/kites/Ram_50smaller.png" />
 		<vertices>	<!-- clockwise -->
-			<vertex x="0" y="-40" />
-			<vertex x="40" y="0" />
-			<vertex x="0" y="30" />
-			<vertex x="-40" y="0" />
+			<vertex x="0" y="-61" />
+			<vertex x="52" y="0" />
+			<vertex x="0" y="22" />
+			<vertex x="-52" y="0" />
 		</vertices>
 		<rope links="4" linkLength="0.5" linkWidth="0.1" />
 		<knife>
@@ -33,12 +35,13 @@
 				<density>2</density>	<!-- kg/m^3 -->
 			</physicalProperties>
 		</knife>
-		<position x="800" y="300" />
-		<pivot x="800" y="675" />
+		<position x="400" y="300" />
+		<characterPosition x="300"/>
+		<pivot x="15" y="140" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
-			<density>1</density>	<!-- kg/m^3 -->
+			<density>0.5</density>	<!-- kg/m^3 -->
 		</physicalProperties>
 		<movement>
 			<maxAngle>60</maxAngle>	<!-- degrees -->
@@ -46,11 +49,13 @@
 		</movement>
 	</kite>	
 	<kite>
+		<character src="assets/characters/Chibis_Boy2(Large).png" />
+		<kiteSkin src="assets/kites/Dragon_50smaller.png" />
 		<vertices>	<!-- clockwise -->
-			<vertex x="0" y="-40" />
-			<vertex x="40" y="0" />
-			<vertex x="0" y="30" />
-			<vertex x="-40" y="0" />
+			<vertex x="0" y="-61" />
+			<vertex x="52" y="0" />
+			<vertex x="0" y="22" />
+			<vertex x="-52" y="0" />
 		</vertices>
 		<rope links="4" linkLength="0.5" linkWidth="0.1" />
 		<knife>
@@ -65,12 +70,13 @@
 				<density>2</density>	<!-- kg/m^3 -->
 			</physicalProperties>
 		</knife>
-		<position x="300" y="300" />
-		<pivot x="300" y="675" />
+		<position x="1200" y="300" />
+		<characterPosition x="1300"/>
+		<pivot x="10" y="140" />
 		<physicalProperties>
 			<friction>0.3</friction>	<!-- 0 to 1 -->
 			<restitution>0.5</restitution>	<!-- 0 to 1 -->
-			<density>1</density>	<!-- kg/m^3 -->
+			<density>0.5</density>	<!-- kg/m^3 -->
 		</physicalProperties>
 		<movement>
 			<maxAngle>60</maxAngle>	<!-- degrees -->

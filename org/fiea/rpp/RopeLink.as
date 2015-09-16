@@ -13,13 +13,16 @@ package org.fiea.rpp
 	 * ...
 	 * @author Nihav Jain
 	 */
-	public class RopeLink
+	public class RopeLink extends Box2DActor
 	{
-		public var body:b2Body;
+		
 		// pass wid, ht and location in Box2D World dimentions
 		public function RopeLink(parent:DisplayObjectContainer, wid:Number, ht:Number, location:Point, fric:Number, resti:Number, density:Number) 
 		{
-			this.body = createBody(wid, ht, location, fric, resti, density);
+			var body:b2Body = createBody(wid, ht, location, fric, resti, density);
+			var skin:Sprite = this.createSprite(wid, ht, location);
+			super(body, skin);
+			parent.addChild(skin);			
 		}
 		
 		// location is top-left corner
@@ -30,7 +33,7 @@ package org.fiea.rpp
 			
 			//var ropeSprite:Sprite = new ropeSprite(wid, ht);
 			var ropeSprite:Sprite = new Sprite();
-			ropeSprite.graphics.beginFill(0x00FFFF, 0.5);
+			ropeSprite.graphics.beginFill(0x663300, 1);
 			ropeSprite.graphics.drawRect(-wid / 2, -ht / 2, wid, ht);
 			ropeSprite.graphics.endFill();
 			
@@ -65,7 +68,7 @@ package org.fiea.rpp
 			
 			return ropeBody;
 		}
-				
+
 	}
 
 }
