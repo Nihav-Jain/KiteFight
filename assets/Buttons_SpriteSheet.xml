@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Buttons_SpriteSheet.png" name="buttons">
+	<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="LEFTbutton_bluee.png" x="10" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_bluee_highlight.png" x="82" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_bluee_highlight_clicked.png" x="154" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_greenn.png" x="226" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_greenn_highlight.png" x="298" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_greenn_highlight_clicked.png" x="370" y="10" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_redd.png" x="10" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_redd_highlight.png" x="82" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="LEFTbutton_redd_highlight_clicked.png" x="154" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_blue.png" x="226" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_blue_highlight.png" x="298" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_blue_highlight_clicked.png" x="370" y="82" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_green.png" x="10" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_green_highlight.png" x="82" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_green_highlight_clicked.png" x="154" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_red.png" x="226" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_red_highlight.png" x="298" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="RIGHTbutton_red_highlight_clicked.png" x="370" y="154" width="72" height="72" pivotX="0" pivotY="0"/>
+	<SubTexture name="_HELP.png" x="10" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_HELP2.png" x="64" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_PAUSE.png" x="118" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_PAUSE_clicked.png" x="172" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_REPLAY.png" x="226" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_REPLAY_clicked.png" x="280" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_SOUNDoff.png" x="334" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_SOUNDoff_clicked.png" x="388" y="226" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_SOUNDon.png" x="10" y="279" width="54" height="53" pivotX="0" pivotY="0"/>
+	<SubTexture name="_SOUNDon_clicked.png" x="64" y="279" width="54" height="53" pivotX="0" pivotY="0"/>
+</TextureAtlas>

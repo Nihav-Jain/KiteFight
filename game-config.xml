@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<backgrounds>	<!-- plz plz plz use jpg for backgrounds -->
+		<image src="assets/backgrounds/Battle_Background_mediumQuality.jpg" />
+		<image src="assets/backgrounds/SelectMenu_Medquality.jpg" />
+	</backgrounds>
+	<kites>
+		<image src="assets/kites/Dog.png" />
+		<image src="assets/kites/Dragon.png" />
+		<image src="assets/kites/Ram.png" />
+		<image src="assets/kites/Ox.png" />
+		<image src="assets/kites/Rat.png" />
+		<image src="assets/kites/Rooster.png" />
+		<image src="assets/kites/Tiger.png" />
+		<image src="assets/kites/Pig.png" />
+	</kites>
+	<characters>
+		<image src="assets/characters/FinalBoy_Blue.png" />
+		<image src="assets/characters/FinalGirl_Blue.png" />
+		<image src="assets/characters/FinalBoy_Green.png" />
+		<image src="assets/characters/FinalGirl_Green.png" />
+		<image src="assets/characters/FinalBoy_Orange.png" />
+		<image src="assets/characters/FinalGirl_Orange.png" />
+		<image src="assets/characters/FinalBoy_Purple.png" />
+		<image src="assets/characters/FinalGirl_Purple.png" />
+	</characters>
+	<sounds>
+		<sound key = "GPMusic" src="assets/sounds/Gameplay/Gameplay_Mix.mp3" repeat ="-1" volume =".5" />
+		<sound key = "Crashing" src="assets/sounds/Gameplay/Crashing_SFX.mp3" repeat ="0" volume ="1"  />
+		<sound key = "Crash1" src="assets/sounds/Gameplay/Crash_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Crash2" src="assets/sounds/Gameplay/Crash_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Damaged1" src="assets/sounds/Gameplay/Damaged_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Damaged2" src="assets/sounds/Gameplay/Damaged_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Hit1" src="assets/sounds/Gameplay/Hit_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Hit2" src="assets/sounds/Gameplay/Hit_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "SlowMo" src="assets/sounds/Gameplay/SlowMo_In.mp3" repeat ="0" volume ="0"  />
+		<sound key = "Wind1" src="assets/sounds/Gameplay/Wind_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Wind2" src="assets/sounds/Gameplay/Wind_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuMusic" src="assets/sounds/Menu/MenuEntry_MUSIC.mp3" repeat ="-1" volume =".5"  />
+		<sound key = "MenuSound1" src="assets/sounds/Menu/MenuSound_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuSound2" src="assets/sounds/Menu/MenuSound_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuSound3" src="assets/sounds/Menu/MenuSound_SFX (3).mp3" repeat ="0" volume ="1"  />
+	</sounds>
+	
+	<weapons>
+		<weapon name="HLH_Yoyo" src="assets/weapons/Weapon_yoyo.png" leftstats="assets/weapons/Stats_Yoyo.png" rightstats="assets/weapons/Rightstats_yoyo.png">
+		  <rope links="1" linkLength="1.25" linkWidth="0.125"/>
+		  <vertices>
+			<vertex x="-25" y="0.5"/>
+			<vertex x="-21" y="-17"/>
+			<vertex x="21" y="-17"/>
+			<vertex x="24" y="0"/>
+			<vertex x="19.5" y="18"/>
+			<vertex x="-20.5" y="18"/>
+			<vertex x="-24.5" y="-0.5"/>
+			<vertex x="-24.5" y="0"/>
+		  </vertices>
+		  <physicalProperties>
+			<friction>2</friction>
+			<restitution>1</restitution>
+			<density>10</density>
+		  </physicalProperties>
+		</weapon>
+		<weapon name="MMM_Top" src="assets/weapons/Weapon_top.png" leftstats="assets/weapons/Stats_Top.png" rightstats="assets/weapons/Rightstats_top.png">
+		  <rope links="4" linkLength="0.5" linkWidth="0.1"/>
+		  <vertices>
+			<vertex x="-2.5" y="-1.5"/>
+			<vertex x="-0.5" y="-6.5"/>
+			<vertex x="1" y="-1"/>
+			<vertex x="1.5" y="3.5"/>
+			<vertex x="12" y="6.5"/>
+			<vertex x="13" y="17.5"/>
+			<vertex x="3.5" y="24.5"/>
+			<vertex x="-1" y="36.5"/>
+			<vertex x="-4" y="25"/>
+			<vertex x="-13" y="17.5"/>
+			<vertex x="-13.5" y="6.5"/>
+			<vertex x="-2.5" y="3"/>
+		  </vertices>
+		  <physicalProperties>
+			<friction>0.5</friction>
+			<restitution>1</restitution>
+			<density>15</density>
+		  </physicalProperties>
+		</weapon>
+		<weapon name="LHL_Whip" src="assets/weapons/Weapon_fan.png" leftstats="assets/weapons/Stats_Fan.png" rightstats="assets/weapons/Rightstats_fan.png">
+		  <rope links="10" linkLength="0.375" linkWidth="0.075"/>
+		  <vertices>
+			<vertex x="-3" y="-4"/>
+			<vertex x="-9.5" y="-9"/>
+			<vertex x="-5" y="-12"/>
+			<vertex x="5" y="-12"/>
+			<vertex x="11.5" y="-7.5"/>
+			<vertex x="4.5" y="-4"/>
+			<vertex x="34" y="10.5"/>
+			<vertex x="34" y="20"/>
+			<vertex x="23" y="21.5"/>
+			<vertex x="19.5" y="30"/>
+			<vertex x="8.5" y="30"/>
+			<vertex x="-0.5" y="37"/>
+			<vertex x="-9" y="30"/>
+			<vertex x="-20.5" y="29.5"/>
+			<vertex x="-23.5" y="21"/>
+			<vertex x="-32" y="18"/>
+			<vertex x="-32" y="9"/>
+			<vertex x="-3" y="-3.5"/>
+			<vertex x="-3.5" y="-4.5"/>
+			<vertex x="-9" y="-8.5"/>
+		  </vertices>
+		  <physicalProperties>
+			<friction>0.5</friction>
+			<restitution>1</restitution>
+			<density>1</density>
+		  </physicalProperties>
+		</weapon>	
+	</weapons>
+	<players>
+		<player>
+			<keymap key="up">87</keymap>
+			<keymap key="down">83</keymap>
+			<keymap key="left">65</keymap>
+			<keymap key="right">68</keymap>
+			<characterPosition x="300"/>
+			<pivot x="15" y="140" />
+			<kite>
+				<vertices>	<!-- clockwise -->
+					<vertex x="0" y="-61" />
+					<vertex x="52" y="0" />
+					<vertex x="0" y="22" />
+					<vertex x="-52" y="0" />
+				</vertices>
+				<position x="400" y="300" />
+				<physicalProperties>
+					<friction>0.3</friction>	<!-- 0 to 1 -->
+					<restitution>0.5</restitution>	<!-- 0 to 1 -->
+					<density>0.5</density>	<!-- kg/m^3 -->
+				</physicalProperties>
+			</kite>
+			<healthbar x="10" y="15" wid="300" ht="30" barx="20" bary="45" />
+		</player>
+		<player>
+			<keymap key="up">38</keymap>
+			<keymap key="down">40</keymap>
+			<keymap key="left">37</keymap>
+			<keymap key="right">39</keymap>
+			<characterPosition x="1300"/>
+			<pivot x="10" y="140" />
+			<kite>
+				<vertices>	<!-- clockwise -->
+					<vertex x="0" y="-61" />
+					<vertex x="52" y="0" />
+					<vertex x="0" y="22" />
+					<vertex x="-52" y="0" />
+				</vertices>
+				<position x="1200" y="300" />
+				<physicalProperties>
+					<friction>0.3</friction>	<!-- 0 to 1 -->
+					<restitution>0.5</restitution>	<!-- 0 to 1 -->
+					<density>0.5</density>	<!-- kg/m^3 -->
+				</physicalProperties>
+			</kite>
+			<healthbar x="1170" y="15" wid="300" ht="30" barx="112" bary="45" />
+		</player>
+	</players>
+	
+	<spritesheets>
+		<expressions>
+			<TextureAtlas imagePath="assets/Girl_SpriteSheet.png" name="girl_expressions">
+				<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+				<!-- http://www.adobe.com/products/flash.html -->
+				<SubTexture name="Girl_Neutral.png" x="10" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Girls_Hit.png" x="60" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Girls_SlowMo.png" x="110" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Girls_Worried.png" x="160" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+			</TextureAtlas>		
+			<TextureAtlas imagePath="assets/Boy_SpriteSheet.png" name="boy_expressions">
+				<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+				<!-- http://www.adobe.com/products/flash.html -->
+				<SubTexture name="Boy_Neutral.png" x="10" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Boys_Hit.png" x="60" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Boys_SlowMo.png" x="110" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+				<SubTexture name="Boys_Worried.png" x="160" y="10" width="50" height="80" pivotX="0" pivotY="0"/>
+			</TextureAtlas>
+		</expressions>
+		<buttons>
+			<TextureAtlas imagePath="assets/Buttons_SpriteSheet.png" name="buttons">
+				<!-- Created with Adobe Flash Professional version 15.0.1.179 -->
+				<!-- http://www.adobe.com/products/flash.html -->
+					<SubTexture name="LEFTbutton_bluee.png" x="10" y="10" width="72" height="72" pivotX="0" pivotY="0" id="1"/>
+					<SubTexture name="LEFTbutton_bluee_highlight.png" x="82" y="10" width="72" height="72" pivotX="0" pivotY="0" id="1"/>
+					<SubTexture name="LEFTbutton_bluee_highlight_clicked.png" x="154" y="10" width="72" height="72" pivotX="0" pivotY="0" id="1"/>
+					<SubTexture name="LEFTbutton_greenn.png" x="226" y="10" width="72" height="72" pivotX="0" pivotY="0" id="2"/>
+					<SubTexture name="LEFTbutton_greenn_highlight.png" x="298" y="10" width="72" height="72" pivotX="0" pivotY="0" id="2"/>
+					<SubTexture name="LEFTbutton_greenn_highlight_clicked.png" x="370" y="10" width="72" height="72" pivotX="0" pivotY="0" id="2"/>
+					<SubTexture name="LEFTbutton_redd.png" x="442" y="10" width="72" height="72" pivotX="0" pivotY="0" id="3"/>
+					<SubTexture name="LEFTbutton_redd_highlight.png" x="514" y="10" width="72" height="72" pivotX="0" pivotY="0" id="3"/>
+					<SubTexture name="LEFTbutton_redd_highlight_clicked.png" x="586" y="10" width="72" height="72" pivotX="0" pivotY="0" id="3"/>
+					<SubTexture name="RIGHTbutton_blue.png" x="10" y="82" width="72" height="72" pivotX="0" pivotY="0" id="4"/>
+					<SubTexture name="RIGHTbutton_blue_highlight.png" x="82" y="82" width="72" height="72" pivotX="0" pivotY="0" id="4"/>
+					<SubTexture name="RIGHTbutton_blue_highlight_clicked.png" x="154" y="82" width="72" height="72" pivotX="0" pivotY="0" id="4"/>
+					<SubTexture name="RIGHTbutton_green.png" x="226" y="82" width="72" height="72" pivotX="0" pivotY="0" id="5"/>
+					<SubTexture name="RIGHTbutton_green_highlight.png" x="298" y="82" width="72" height="72" pivotX="0" pivotY="0" id="5"/>
+					<SubTexture name="RIGHTbutton_green_highlight_clicked.png" x="370" y="82" width="72" height="72" pivotX="0" pivotY="0" id="5"/>
+					<SubTexture name="RIGHTbutton_red.png" x="442" y="82" width="72" height="72" pivotX="0" pivotY="0" id="6"/>
+					<SubTexture name="RIGHTbutton_red_highlight.png" x="514" y="82" width="72" height="72" pivotX="0" pivotY="0" id="6"/>
+					<SubTexture name="RIGHTbutton_red_highlight_clicked.png" x="586" y="82" width="72" height="72" pivotX="0" pivotY="0" id="6"/>
+					<SubTexture name="_HELP.png" x="10" y="154" width="54" height="53" pivotX="0" pivotY="0" id="7"/>
+					<SubTexture name="_HELP2.png" x="64" y="154" width="54" height="53" pivotX="0" pivotY="0" id="7"/>
+					<SubTexture name="_PAUSE.png" x="118" y="154" width="54" height="53" pivotX="0" pivotY="0" id="8"/>
+					<SubTexture name="_PAUSE_clicked.png" x="172" y="154" width="54" height="53" pivotX="0" pivotY="0" id="8"/>
+					<SubTexture name="_PLAY_clicked.png" x="226" y="154" width="54" height="53" pivotX="0" pivotY="0" id="12"/>
+					<SubTexture name="_PLAY_unclicked.png" x="280" y="154" width="54" height="53" pivotX="0" pivotY="0" id="12"/>
+					<SubTexture name="_REPLAY.png" x="334" y="154" width="54" height="53" pivotX="0" pivotY="0" id="9"/>
+					<SubTexture name="_REPLAY_clicked.png" x="388" y="154" width="54" height="53" pivotX="0" pivotY="0" id="9"/>
+					<SubTexture name="_SOUNDoff.png" x="442" y="154" width="54" height="53" pivotX="0" pivotY="0" id="11"/>
+					<SubTexture name="_SOUNDoff_clicked.png" x="496" y="154" width="54" height="53" pivotX="0" pivotY="0" id="11"/>
+					<SubTexture name="_SOUNDon.png" x="550" y="154" width="54" height="53" pivotX="0" pivotY="0" id="10"/>
+					<SubTexture name="_SOUNDon_clicked.png" x="604" y="154" width="54" height="53" pivotX="0" pivotY="0" id="10"/>
+			</TextureAtlas>
+		</buttons>
+	</spritesheets>
+	<playeronewin src="assets/WinnerPlayer1.png" />
+	<playertwowin src="assets/WinnerPlayer2.png" />
+</data>

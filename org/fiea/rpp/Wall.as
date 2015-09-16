@@ -16,7 +16,7 @@ package org.fiea.rpp
 		// x, y are top-left coordinates
 		public function Wall(x:Number, y:Number, wid:Number, ht:Number) 
 		{
-			wall = this.createBody(x, y, wid, ht);
+			wall = createBody(x, y, wid, ht);
 		}
 		
 		private function createBody(x:Number, y:Number, wid:Number, ht:Number):b2Body 

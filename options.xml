@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<backgrounds>	<!-- plz plz plz use jpg for backgrounds -->
+		<image src="assets/backgrounds/Background4.jpg" />
+		<image src="assets/backgrounds/Background4.jpg" />
+		<image src="assets/backgrounds/Background4.jpg" />
+		<image src="assets/backgrounds/Background4.jpg" />
+		<image src="assets/backgrounds/Background4.jpg" />
+	</backgrounds>
+	<kites>
+		<image src="assets/kites/Dog_50smaller.png" />
+		<image src="assets/kites/Dragon_50smaller.png" />
+		<image src="assets/kites/Ram_50smaller.png" />
+	</kites>
+	<characters>
+		<image src="assets/characters/Girl/Papergirl_untextured_Blue.png" />
+		<image src="assets/characters/Girl/Papergirl_untextured_Green.png" />
+		<image src="assets/characters/Girl/Papergirl_untextured_Purple.png" />
+		<image src="assets/characters/Girl/Papergirl_untextured_Rorange.png" />		
+	</characters>
+	<sounds>
+		<sound key = "GPMusic" src="assets/sounds/Gameplay/Gameplay_Mix.mp3" repeat ="-1" volume =".5" />
+		<sound key = "Crashing" src="assets/sounds/Gameplay/Crashing_SFX.mp3" repeat ="0" volume ="1"  />
+		<sound key = "Crash1" src="assets/sounds/Gameplay/Crash_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Crash2" src="assets/sounds/Gameplay/Crash_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Damaged1" src="assets/sounds/Gameplay/Damaged_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Damaged2" src="assets/sounds/Gameplay/Damaged_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Hit1" src="assets/sounds/Gameplay/Hit_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Hit2" src="assets/sounds/Gameplay/Hit_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "SlowMo" src="assets/sounds/Gameplay/SlowMo_In.mp3" repeat ="0" volume ="1"  />
+		<sound key = "Wind1" src="assets/sounds/Gameplay/Wind_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "Wind2" src="assets/sounds/Gameplay/Wind_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuMusic" src="assets/sounds/Menu/MenuEntry_MUSIC.mp3" repeat ="-1" volume =".5"  />
+		<sound key = "MenuSound1" src="assets/sounds/Menu/MenuSound_SFX (1).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuSound2" src="assets/sounds/Menu/MenuSound_SFX (2).mp3" repeat ="0" volume ="1"  />
+		<sound key = "MenuSound3" src="assets/sounds/Menu/MenuSound_SFX (3).mp3" repeat ="0" volume ="1"  />
+	</sounds>
+</data>
