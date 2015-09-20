@@ -8,6 +8,7 @@ package org.fiea.rpp
 	import com.greensock.loading.XMLLoader;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.EventDispatcher;
@@ -101,14 +102,18 @@ package org.fiea.rpp
 		
 		private var startButton:SimpleButton;
 		private var startButtonClicked:Function;
-		public function KiteFiteMainMenu(_stage:Stage, callBackFunc:Function, startButton:SimpleButton, startButtonClicked:Function) 
+		private var loadingButton:MovieClip;
+		
+		public function KiteFiteMainMenu(_stage:Stage, callBackFunc:Function, startButton:SimpleButton, startButtonClicked:Function, loadingBtn:MovieClip) 
 		{
+			Console.log("KiteFiteMainMenu");
 			xmlLoader = new XMLLoader("game-config.xml", { name: "game-config", onComplete: init } );
 			xmlLoader.load();
 			callback = callBackFunc;
 			parentStage = _stage;
 			this.startButton = startButton;
 			this.startButtonClicked = startButtonClicked;
+			this.loadingButton = loadingBtn;
 		}
 		
 		private function init(e:LoaderEvent):void
@@ -299,30 +304,7 @@ package org.fiea.rpp
 				soundOff.visible = false;
 				trace("unmuted");
 			}
-			//parentStage.addChild(soundOn);
-			
-			//BG
-			/*for each (sub in xml.SubTexture)
-			{
-				sprite = new Sprite();
-				mat = new Matrix();
-				mat.translate( -parseFloat(sub.@x), -parseFloat(sub.@y));
-				sprite.graphics.beginBitmapFill(bmpd, mat, false, true);				
-				sprite.graphics.drawRect(0, 0, parseFloat(sub.@width), parseFloat(sub.@height));
-				sprite.graphics.endFill();
-				trace(sub.@id);
-				switch (parseInt(sub.@id)){
-				case 1:
-					BGLeftBlueButtonSptrites.push(sprite);
-					break;
-				case 4:
-					BGRightBlueButtonSptrites.push(sprite);
-					break;
-				}
-				
-				//buttonsSpriteSheetContainer.addChild(sprite);
-				//break;
-			}*/
+
 		}
 		
 		private function loaded(l:LoaderEvent):void
@@ -333,6 +315,7 @@ package org.fiea.rpp
 		
 		private function Loaded(e:Event):void
 		{
+			this.loadingButton.visible = false;
 			startButton.addEventListener(MouseEvent.CLICK, startButtonClicked);
 			SoundManager.getInstance().Play("MenuMusic");
 			soundOff.addEventListener(MouseEvent.CLICK, Mute);
