@@ -55,10 +55,11 @@
 		public var replay:SimpleButton;
 		private var soundOn:SimpleButton;
 		private var soundOff:SimpleButton;
-		private static var playerOneWin:Sprite;
-		private static var playerTwoWin:Sprite;
+		private var playerOneWin:Sprite;
+		private var playerTwoWin:Sprite;
 		
 		private static var me:KiteFight;
+		private var stageElements:Sprite;
 		
 		public function KiteFight(_stage:Stage, backgroundSprite:Sprite, leftKiteSprite:Sprite, rightKiteSprite:Sprite, leftCharacterSprite:Sprite, rightCharacterSprite:Sprite, leftWeaponXml:XML, leftWeapon:Sprite, rightWeaponXml:XML, rightWeapon:Sprite, leftPlayerInfo:XML, rightPlayerInfo:XML, exitFunc:Function, soundOffSprites:Vector.<Sprite>, soundOnSprites:Vector.<Sprite>, _playerOneWins:Sprite, _playerTwoWins:Sprite, pauseSprites:Vector.<Sprite>, replaySprites:Vector.<Sprite>, helpSprites:Vector.<Sprite>, playSprites:Vector.<Sprite>) 
 		{
@@ -163,13 +164,15 @@
 			InputManager.getInstance().dispatchPauseEvent.addEventListener(InputManager.EXIT_GAME, exit);
 			InputManager.getInstance().addInputListeners(STAGE);
 			this.addEventListener(Event.ENTER_FRAME, update);
+			stageElements = new Sprite();
 			STAGE.addChild(this);
-			STAGE.addChild(soundOff);
-			STAGE.addChild(soundOn);
-			STAGE.addChild(pause);
-			STAGE.addChild(play);
-			STAGE.addChild(replay);
-			STAGE.addChild(help);
+			STAGE.addChild(stageElements);
+			stageElements.addChild(soundOff);
+			stageElements.addChild(soundOn);
+			stageElements.addChild(pause);
+			stageElements.addChild(play);
+			stageElements.addChild(replay);
+			stageElements.addChild(help);
 			me = this;
 		}
 				
@@ -357,7 +360,13 @@
 						SoundManager.getInstance().PlayRandomDamagedSound();
 					}
 					trace("player 0 health " + players[0].getHealth());
-					if (players[0].getHealth() == 0)
+					//--health1;
+					health1 -= damageAmount;
+					if (health1 < 0)
+					{
+						health1 = 0;
+					}
+					if (health1 == 0)
 					{
 						pause.visible = false;
 						play.visible = false;
@@ -367,14 +376,12 @@
 						//SoundManager.getInstance().Play("Crashing");
 						players[0].die();
 						players[1].GoToCenter();
+						this.showWinSign(0);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.KITE_0_HIT, Kite0Hit);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.KITE_1_HIT, Kite1Hit);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.HIT_JUST_HAPPENED, AfterHit);
 					}
 					kite0WasHit = false;
-					//--health1;
-					health1 -= damageAmount;
-					if (health1 < 0)
-					{
-						health1 = 0;
-					}
 					eventDispatcher.dispatchEvent(new Event(UPDATE_HEALTH));
 					eventDispatcher.dispatchEvent(new Event(PLAY_HITSOUND));
 				}
@@ -390,7 +397,13 @@
 						SoundManager.getInstance().PlayRandomDamagedSound();
 					}
 					trace("player 1 health " + players[1].getHealth());
-					if (players[1].getHealth() == 0)
+					//--health2;
+					health2 -= damageAmount;
+					if (health2 < 0)
+					{
+						health2 = 0;
+					}
+					if (health2 == 0)
 					{
 						pause.visible = false;
 						play.visible = false;
@@ -400,14 +413,12 @@
 						//SoundManager.getInstance().Play("Crashing");
 						players[1].die();
 						players[0].GoToCenter2();
+						this.showWinSign(1);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.KITE_0_HIT, Kite0Hit);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.KITE_1_HIT, Kite1Hit);
+						kiteContactListner.eventDispatcher.removeEventListener(KiteContactListener.HIT_JUST_HAPPENED, AfterHit);
 					}
 					kite1WasHit = false;
-					//--health2;
-					health2 -= damageAmount;
-					if (health2 < 0)
-					{
-						health2 = 0;
-					}
 					eventDispatcher.dispatchEvent(new Event(UPDATE_HEALTH));
 					eventDispatcher.dispatchEvent(new Event(PLAY_HITSOUND));
 				}
@@ -469,12 +480,13 @@
 			play.removeEventListener(MouseEvent.CLICK, pauseGame);
 			replay.removeEventListener(MouseEvent.CLICK, exit);
 			help.removeEventListener(MouseEvent.CLICK, Help);
-			STAGE.removeChild(soundOff);
+			STAGE.removeChild(stageElements);
+/*			STAGE.removeChild(soundOff);
 			STAGE.removeChild(soundOn);
 			STAGE.removeChild(pause);
 			STAGE.removeChild(play);
 			STAGE.removeChild(replay);
-			STAGE.removeChild(help);
+			STAGE.removeChild(help);*/
 			InputManager.getInstance().removeInputListeners(STAGE);
 			InputManager.destroy();
 			
@@ -486,11 +498,11 @@
 			this.exitFunction.call(null);
 		}
 		
-		public static function showWinSign(playerid:int):void
+		public function showWinSign(playerid:int):void
 		{
 			if (playerid == 0)
 			{
-				STAGE.addChild(playerOneWin);
+				stageElements.addChild(playerOneWin);
 				playerOneWin.x = 100;
 				playerOneWin.y = 150;
 				playerOneWin.alpha = 0;
@@ -498,7 +510,7 @@
 			}
 			else
 			{
-				STAGE.addChild(playerTwoWin);
+				stageElements.addChild(playerTwoWin);
 				playerTwoWin.x = STAGE.stageWidth - 100 - playerTwoWin.width;
 				playerTwoWin.y = 150;
 				playerTwoWin.alpha = 0;

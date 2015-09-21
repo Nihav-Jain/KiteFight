@@ -350,7 +350,7 @@ package org.fiea.rpp
 			
 			TweenLite.to(VictorySprite, .5, { y: KiteFight.STAGE.stageHeight / 2, x:  KiteFight.STAGE.stageWidth / 4, onUpdate: Winprogress, ease: Circ.easeIn, onComplete: DanceBegin } );
 			
-			KiteFight.showWinSign(this.id);
+			//KiteFight.showWinSign(this.id);
 		}
 		
 		public function GoToCenter2():void
@@ -361,7 +361,7 @@ package org.fiea.rpp
 			
 			TweenLite.to(VictorySprite, .5, { y: KiteFight.STAGE.stageHeight / 2, x:  KiteFight.STAGE.stageWidth*3 / 4, onUpdate: Winprogress, ease: Circ.easeIn, onComplete: DanceBegin } );
 			
-			KiteFight.showWinSign(this.id);
+			//KiteFight.showWinSign(this.id);
 		}
 		
 		
