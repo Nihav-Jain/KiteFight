@@ -1,7 +1,7 @@
 # KiteFight
-A 2 player kite fighting game developed in Adobe Flash ActionScript 3.0 as part of a 2 week Rapid Prototyping project at [FIEA](http://fiea.ucf.edu)
+A 2 player kite fighting game developed in Adobe Flash and ActionScript 3.0 for a 2 week Rapid Prototyping project at [FIEA](http://fiea.ucf.edu)
 
-PLay the demo at http://nihavjain.info/demo/kitefite
+Play the demo at http://nihavjain.info/demo/kitefite
 
 ###Goal:
 Damage the kite of the other player until it drops down
